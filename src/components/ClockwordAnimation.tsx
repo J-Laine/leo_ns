@@ -22,7 +22,6 @@ export default function ClockWordAnimation() {
 
   return (
     <h1 className="font-semibold text-2xl md:text-3xl">
-      kärsitkö
       <span className={styles.wordWrapper}>
         <span 
           className={`${styles.rotatingWord} ${isAnimating ? styles.animateOut : styles.animateIn}`}

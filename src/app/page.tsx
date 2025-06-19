@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
         <div className="bg-green-200 p-8 h-[450px] text-black flex items-center justify-center">
-            Highlighted content with yellow background
+            
              <ClockWordAnimation />
         </div>
         <div className="bg-red-200 p-8 h-[450px] text-black flex items-center justify-center">
