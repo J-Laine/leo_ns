@@ -1,23 +1,7 @@
 /* globals.css */
 @import "tailwindcss/preflight";
 @import 'tailwindcss';
-@tailwind utilities;
 
-
-@layer components {
-  .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition;
-  }
-  .btn-secondary {
-    @apply bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-600 text-zinc-800 dark:text-zinc-200 px-5 py-2 rounded-2xl shadow-sm transition hover:bg-zinc-100 dark:hover:bg-zinc-700;
-  }
-  .card {
-    @apply bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700 transition hover:shadow-xl;
-  }
-  .input {
-    @apply w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500;
-  }
-}
 
 @layer utilities {
   .animate-fade-in {
@@ -27,4 +11,32 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+}
+
+/* for clockwork word animation */
+.animated-heading {
+  font-family: inherit;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.word-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 2em;
+  margin-left: 0.5rem;
+  vertical-align: top;
+}
+
+.rotating-word {
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  width: 100%;
 }
