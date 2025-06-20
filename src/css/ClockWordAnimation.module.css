@@ -11,11 +11,11 @@
 }
 
 .animateIn {
-  animation: fadeIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards;
+  animation: fadeIn 1s cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards;
 }
 
 .animateOut {
-  animation: fadeOut 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards;
+  animation: fadeOut 1s cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards;
 }
 
 @keyframes fadeIn {

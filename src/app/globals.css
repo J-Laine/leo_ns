@@ -13,30 +13,3 @@
   }
 }
 
-/* for clockwork word animation */
-.animated-heading {
-  font-family: inherit;
-  font-size: 1.5rem;
-  line-height: 1.5;
-  margin: 1.5rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.word-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  height: 2em;
-  margin-left: 0.5rem;
-  vertical-align: top;
-}
-
-.rotating-word {
-  position: absolute;
-  display: block;
-  white-space: nowrap;
-  width: 100%;
-}
