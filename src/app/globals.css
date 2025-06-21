@@ -1,8 +1,11 @@
 /* globals.css */
 @import "tailwindcss/preflight";
-@import 'tailwindcss';
+@import "tailwindcss";
 
+/* Configure dark mode for Tailwind v4 */
+@variant dark (.dark &);
 
+/* Your existing utilities */
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out both;
