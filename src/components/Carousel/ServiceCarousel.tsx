@@ -2,11 +2,12 @@
 
 import React, { useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from "embla-carousel-react";
+import Image from 'next/image';
 import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import styles from "../../css/ServiceCarousel.module.css";
 import { usePrevNextButtons, useDotButtons } from "../../hooks/useCarouselControls";
 
-const TWEEN_FACTOR_BASE = 0.2;
+const TWEEN_FACTOR_BASE = 0.05;
 
 const slides = [
   {
@@ -42,7 +43,10 @@ const slides = [
 ];
 
 export default function ServiceCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    duration: 40, 
+});
   
   // Existing hooks
   const { prevDisabled, nextDisabled, scrollPrev, scrollNext } = usePrevNextButtons(emblaApi);
@@ -61,7 +65,7 @@ export default function ServiceCarousel() {
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
   }, []);
-
+  
   const tweenParallax = useCallback(
     (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
       const engine = emblaApi.internalEngine();
@@ -140,10 +144,13 @@ export default function ServiceCarousel() {
                 {/* Updated structure for parallax */}
                 <div className={styles.embla__parallax}>
                   <div className={styles.embla__parallax__layer}>
-                    <img
-                      className={styles.embla__parallax__img}
+                    <Image
                       src={slide.background}
                       alt={slide.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      priority={index === slides.length - 1 || index < 2}
+                      className={styles.embla__parallax__img}
                     />
                   </div>
                 </div>

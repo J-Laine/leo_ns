@@ -25,7 +25,6 @@
   user-select: none;
   gap: 1rem;
   padding: 0 1rem;
-  
 }
 
 .embla__slide {
@@ -104,6 +103,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  will-change: transform;
 }
 
 .embla__parallax__layer {
@@ -112,14 +112,21 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  will-change: transform;
+  transform: translateZ(0); 
+}
+
+.embla__container.transitioning .embla__parallax__layer {
+  transition: none;
 }
 
 .embla__parallax__img {
   max-width: none;
-  flex: 0 0 calc(115% + 2rem); /* Wider than container for parallax effect */
+  flex: 0 0 calc(115% + 2rem); 
   object-fit: cover;
   height: 100%;
   filter: brightness(0.5);
+  backface-visibility: hidden;
 }
 
 /* Button styling */
