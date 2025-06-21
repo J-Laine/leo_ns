@@ -141,21 +141,19 @@ export default function ServiceCarousel() {
           <div className={styles.embla__container}>
             {slides.map((slide, index) => (
               <div className={styles.embla__slide} key={index}>
-                {/* Updated structure for parallax */}
                 <div className={styles.embla__parallax}>
                   <div className={styles.embla__parallax__layer}>
                     <Image
                       src={slide.background}
                       alt={slide.title}
                       fill
+                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 40vw"
                       style={{ objectFit: 'cover' }}
-                      priority={index === slides.length - 1 || index < 2}
                       className={styles.embla__parallax__img}
                     />
                   </div>
                 </div>
                 
-                {/* Keep your existing text overlay */}
                 <div className={styles["embla__text-overlay"]}>
                   <h2>{slide.title}</h2>
                   <p>{slide.description}</p>
