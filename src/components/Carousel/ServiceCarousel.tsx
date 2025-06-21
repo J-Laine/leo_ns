@@ -1,15 +1,18 @@
 "use client";
 
+import React, { useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useState, useCallback } from "react";
+import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import styles from "../../css/ServiceCarousel.module.css";
 import { usePrevNextButtons, useDotButtons } from "../../hooks/useCarouselControls";
+
+const TWEEN_FACTOR_BASE = 0.2;
 
 const slides = [
   {
     title: "Klassinen ja urheiluhieronta",
     description:
-      "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuuta sekä rauhoittaa ja rentouttaa kehoa.",
+      "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuutta sekä rauhoittaa ja rentouttaa kehoa.",
     background: "/kahvi.jpg",
   },
   {
@@ -39,57 +42,87 @@ const slides = [
 ];
 
 export default function ServiceCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-  loop: true,
-  align: 'center', // Center the active slide
-  dragFree: false, // More controlled sliding behavior
-  containScroll: 'trimSnaps', // Prevents awkward whitespace during transitions
-  skipSnaps: false, // Makes transitions more predictable
-  });
-  const [scrollProgress, setScrollProgress] = useState<number[]>(
-    Array(slides.length).fill(0)
-  );
-
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  
+  // Existing hooks
   const { prevDisabled, nextDisabled, scrollPrev, scrollNext } = usePrevNextButtons(emblaApi);
   const { scrollSnaps, selectedIndex, scrollTo } = useDotButtons(emblaApi);
 
-  const updateParallax = useCallback(() => {
-    if (!emblaApi) return;
-    
-    const scrollProgress = emblaApi.scrollProgress();
-    const slideCount = emblaApi.slideNodes().length;
-    
-    const newProgress = Array.from({ length: slideCount }, (_, index) => {
-      const scrollSnap = emblaApi.scrollSnapList()[index];
-      const diffToTarget = scrollSnap - scrollProgress;
-      
-      // More extreme parallax effect
-      return diffToTarget * -1.4; // Changed from -1.5 to -2 for stronger effect
-    });
-    
-    setScrollProgress(newProgress);
-  }, [emblaApi]);
+  // Parallax-specific refs and state
+  const tweenFactor = useRef(0);
+  const tweenNodes = useRef<HTMLElement[]>([]);
 
-  // Update the useEffect for smooth initialization
+  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
+    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
+      return slideNode.querySelector(`.${styles.embla__parallax__layer}`) as HTMLElement;
+    });
+  }, []);
+
+  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
+  }, []);
+
+  const tweenParallax = useCallback(
+    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
+      const engine = emblaApi.internalEngine();
+      const scrollProgress = emblaApi.scrollProgress();
+      const slidesInView = emblaApi.slidesInView();
+      const isScrollEvent = eventName === 'scroll';
+
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+        let diffToTarget = scrollSnap - scrollProgress;
+        const slidesInSnap = engine.slideRegistry[snapIndex];
+
+        slidesInSnap.forEach((slideIndex) => {
+          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+
+          if (engine.options.loop) {
+            engine.slideLooper.loopPoints.forEach((loopItem) => {
+              const target = loopItem.target();
+
+              if (slideIndex === loopItem.index && target !== 0) {
+                const sign = Math.sign(target);
+
+                if (sign === -1) {
+                  diffToTarget = scrollSnap - (1 + scrollProgress);
+                }
+                if (sign === 1) {
+                  diffToTarget = scrollSnap + (1 - scrollProgress);
+                }
+              }
+            });
+          }
+
+          const translate = diffToTarget * (-1 * tweenFactor.current) * 100;
+          const tweenNode = tweenNodes.current[slideIndex];
+          if (tweenNode) {
+            tweenNode.style.transform = `translateX(${translate}%)`;
+          }
+        });
+      });
+    },
+    []
+  );
+
   useEffect(() => {
     if (!emblaApi) return;
-    
-    // Reset to the first non-duplicate slide after initialization
-    emblaApi.reInit();
-    
-    emblaApi.on("scroll", updateParallax);
-    emblaApi.on("reInit", updateParallax);
-    updateParallax();
-    
-    return () => {
-      emblaApi.off("scroll", updateParallax);
-      emblaApi.off("reInit", updateParallax);
-    };
-  }, [emblaApi, updateParallax]);
+
+    setTweenNodes(emblaApi);
+    setTweenFactor(emblaApi);
+    tweenParallax(emblaApi);
+
+    emblaApi
+      .on('reInit', setTweenNodes)
+      .on('reInit', setTweenFactor)
+      .on('reInit', tweenParallax)
+      .on('scroll', tweenParallax)
+      .on('slideFocus', tweenParallax);
+  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor]);
 
   return (
     <div className={styles.embla}>
       <div className={styles.embla__viewport_container}>
+        {/* Previous button */}
         <button 
           className={`${styles.embla__button} ${styles.embla__button_prev}`} 
           onClick={scrollPrev}
@@ -99,17 +132,23 @@ export default function ServiceCarousel() {
           ←
         </button>
         
+        {/* Main carousel */}
         <div className={styles.embla__viewport} ref={emblaRef}>
           <div className={styles.embla__container}>
             {slides.map((slide, index) => (
               <div className={styles.embla__slide} key={index}>
-                <div
-                  className={styles["embla__parallax-img"]}
-                  style={{
-                    backgroundImage: `url(${slide.background})`,
-                    transform: `translate(-50%, -50%) translateX(${scrollProgress[index] * 100}px)`,
-                  }}
-                />
+                {/* Updated structure for parallax */}
+                <div className={styles.embla__parallax}>
+                  <div className={styles.embla__parallax__layer}>
+                    <img
+                      className={styles.embla__parallax__img}
+                      src={slide.background}
+                      alt={slide.title}
+                    />
+                  </div>
+                </div>
+                
+                {/* Keep your existing text overlay */}
                 <div className={styles["embla__text-overlay"]}>
                   <h2>{slide.title}</h2>
                   <p>{slide.description}</p>
@@ -119,6 +158,7 @@ export default function ServiceCarousel() {
           </div>
         </div>
         
+        {/* Next button */}
         <button 
           className={`${styles.embla__button} ${styles.embla__button_next}`} 
           onClick={scrollNext}
@@ -129,6 +169,7 @@ export default function ServiceCarousel() {
         </button>
       </div>
       
+      {/* Dot indicators */}
       <div className={styles.embla__dots}>
         {scrollSnaps.map((_, index) => (
           <button
