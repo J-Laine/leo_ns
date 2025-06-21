@@ -7,7 +7,7 @@ import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import styles from "../../css/ServiceCarousel.module.css";
 import { usePrevNextButtons, useDotButtons } from "../../hooks/useCarouselControls";
 
-const TWEEN_FACTOR_BASE = 0.05;
+const TWEEN_FACTOR_BASE = 0.1;
 
 const slides = [
   {
