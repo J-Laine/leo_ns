@@ -1,0 +1,67 @@
+/* components/BookingButton.module.css */
+.bookingButton {
+  background: rgb(255, 255, 255);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+  min-width: 200px;
+}
+
+.bookingButton:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Dark mode styles */
+:global(.dark) .bookingButton {
+  background: rgb(7, 6, 6);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+:global(.dark) .bookingButton:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bookingButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookingButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    min-width: 160px;
+  }
+  
+  .buttonContainer {
+    margin-top: 1.5rem;
+  }
+}

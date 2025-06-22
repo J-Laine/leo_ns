@@ -3,6 +3,8 @@
   display: inline-block;
   margin-left: 0.5rem;
   overflow: hidden;
+  transform: scale(2); 
+  transform-origin: center; 
 }
 
 .rotatingWord {

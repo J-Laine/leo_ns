@@ -197,31 +197,28 @@
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4); /* Default for light mode */
-  border: none;
+  background: transparent; /* Make default background transparent */
+  border: 2px solid rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
 
 .embla__dot:hover {
-  background: rgba(0, 0, 0, 0.6);
   transform: scale(1.3);
 }
 
 .embla__dot--selected {
-  background: #374151;
+  background: black; /* Black inside when selected */
 }
 
+/* Dark mode styles */
 :global(.dark) .embla__dot {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-:global(.dark) .embla__dot:hover {
-  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
 }
 
 :global(.dark) .embla__dot--selected {
-  background: white;
+  background: white; /* White inside when selected in dark mode */
 }
 
 /* Media queries */
