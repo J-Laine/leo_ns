@@ -133,9 +133,8 @@ export default function ServiceCarousel() {
           disabled={prevDisabled}
           aria-label="Previous slide"
         >
-          ←
         </button>
-        
+
         {/* Main carousel */}
         <div className={styles.embla__viewport} ref={emblaRef}>
           <div className={styles.embla__container}>
@@ -170,7 +169,6 @@ export default function ServiceCarousel() {
           disabled={nextDisabled}
           aria-label="Next slide"
         >
-          →
         </button>
       </div>
       
