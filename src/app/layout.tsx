@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100 ${inter.className}`}>
         <Providers>
           <Navbar />
-          <main className="min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-8 space-y-32">
+          <main className="min-h-screen">
             {children}
           </main>
           <Footer />

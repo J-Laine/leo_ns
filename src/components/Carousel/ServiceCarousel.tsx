@@ -13,19 +13,19 @@ const slides = [
   {
     title: "Klassinen ja urheiluhieronta",
     description:
-      "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuutta sekä rauhoittaa ja rentouttaa kehoa.",
+      "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuuta sekä rauhoittaa ja rentouttaa kehoa.",
     background: "/kahvi.jpg",
   },
   {
     title: "IASTM-käsittely",
     description:
-      "IASTM on hoitomenetelmä, joka hyödyntää instrumentteja pehmytkudosten käsittelyssä. Se parantaa liikkuvuutta, vähentää kipua ja edistää paranemista.",
+      "IASTM (Instrument Assisted Soft Tissue Mobilization) on hoitomenetelmä, joka hyödyntää tietynlaisesti muotoiltuja instrumentteja pehmytkudosten, kuten lihasten, jänteiden ja fasciarakenteiden käsittelyssä. Tämä lähestymistapa on suunniteltu parantamaan kudosten liikkuvuutta, vähentämään kipua ja edistämään paranemista erilaisissa tuki- ja liikuntaelinten vaivoissa.",
     background: "/mansikka.jpg",
   },
   {
     title: "Purentalihashieronta",
     description:
-      "Käytetään mm. narskuttelun, huimauksen, tinnituksen ja päänsäryn hoitoon. Hieronta tehdään sekä suun ulko- että sisäpuolelta, ja käsitellään myös niska-kaula-alue.",
+      "Purentalihashieronta sopii esimerkiksi hampaiden narskuttelusta, huimauksesta, tinnituksesta tai päänsärystä kärsiville. Purentalihashieronnassa käsitellään purentalihaksia sekä suun ulko- että sisäpuolelta. Myös kaulan, niskan ja kallonpohjan lihakset käydään tarkasti läpi.",
     background: "/kokis.jpg",
   },
   {
@@ -37,7 +37,7 @@ const slides = [
   {
     title: "Kinesioteippaus",
     description:
-      "Käytetään tuki- ja liikuntaelinvaivoissa. Teippaus lievittää kipua, ohjaa liikettä ja korjaa asentoa.",
+      "Kinesioteippaus on erilaisten tuki- ja liikuntaelinvaivojen hoitomenetelmä, jossa käytetään joustavaa ja hengittävää teippiä. Käytetään kiputilojen lievitykseen, asennon korjaamiseen sekä liikkeen ohjaamiseen.",
     background: "/lasiV2.jpg",
   },
 ];

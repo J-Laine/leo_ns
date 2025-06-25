@@ -3,7 +3,8 @@
   display: inline-block;
   margin-left: 0.5rem;
   overflow: hidden;
-  transform: scale(2); 
+  /* Use viewport width to make it 90% of the viewport (10% smaller) */
+  font-size: clamp(1rem, 8vw, 4rem);
   transform-origin: center; 
 }
 

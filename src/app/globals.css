@@ -1,5 +1,4 @@
 /* globals.css */
-@import "tailwindcss/preflight";
 @import "tailwindcss";
 
 /* Configure dark mode for Tailwind v4 */

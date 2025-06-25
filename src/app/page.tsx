@@ -5,7 +5,7 @@ import { BookingButton } from '@/components/BookingButton';
 export default function Home() {
   return (
     <>
-        <div className="p-8 h-[450px] flex items-center justify-center">
+        <div className="h-[450px] flex items-center justify-center w-full max-w-7xl mx-auto">
           <ClockWordAnimation />
         </div>
         <div className="p-8 h-[450px] flex items-center justify-center">
