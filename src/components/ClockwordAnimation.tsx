@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import styles from '../css/ClockWordAnimation.module.css'
 
-const sentences = ["Kärsitkö niska-hartijakivuista näyttöpäätetyön takia?", "Oletko urheilija ja haluat optimoida suorituskykysi?", "Oli vaivasi mikä tahansa, teen parhaani sen ratkaisemiseksi!"];
+const sentences = ["Kärsitkö niska-hartijakivuista näyttöpäätetyön takia?", "Oletko urheilija ja haluat optimoida suorituskykyäsi?", "Oli vaivasi mikä tahansa, teen parhaani sen ratkaisemiseksi!"];
 
 export default function ClockWordAnimation() {
   const [index, setIndex] = useState(0);
