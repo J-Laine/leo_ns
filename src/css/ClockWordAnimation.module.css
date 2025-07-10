@@ -1,16 +1,20 @@
 .wordWrapper {
-  position: relative;
-  display: inline-block;
-  margin-left: 0.5rem;
-  overflow: hidden;
-  /* Use viewport width to make it 90% of the viewport (10% smaller) */
-  font-size: clamp(1rem, 8vw, 4rem);
-  transform-origin: center; 
+  transform-origin: center;
+  /* Ensure it takes full width and allows wrapping */
+  display: block;
+  width: 100%;
 }
 
 .rotatingWord {
-  display: block;
-  white-space: nowrap;
+  /* Allow text to wrap naturally */
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  /* Ensure smooth text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .animateIn {
@@ -40,5 +44,20 @@
   100% {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .rotatingWord {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 360px) {
+  .rotatingWord {
+    font-size: 0.85em;
+    line-height: 1.3;
   }
 }

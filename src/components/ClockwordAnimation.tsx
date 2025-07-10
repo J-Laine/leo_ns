@@ -16,20 +16,22 @@ export default function ClockWordAnimation() {
       setTimeout(() => {
         setIndex((prev) => (prev + 1) % sentences.length);
         setIsAnimating(false);
-      }, 300); // Matches the animation duration
+      }, 300);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <h1 className="font-semibold text-2xl md:text-3xl">
-      <span className={styles.wordWrapper}>
-        <span 
-          className={`${styles.rotatingWord} ${isAnimating ? styles.animateOut : styles.animateIn}`}
-        >
-          {sentences[index]}
+    <div className="w-full max-w-[95vw] px-4 sm:px-6 md:px-8">
+      <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center">
+        <span className={`${styles.wordWrapper} relative inline-block overflow-hidden w-full`}>
+          <span 
+            className={`${styles.rotatingWord} ${isAnimating ? styles.animateOut : styles.animateIn} block text-center leading-relaxed sm:leading-normal`}
+          >
+            {sentences[index]}
+          </span>
         </span>
-      </span>
-    </h1>
+      </h1>
+    </div>
   );
 }
