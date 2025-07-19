@@ -6,12 +6,11 @@ import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
 
 const navItems = [
-  { href: "/", label: "Etusivu" },
   { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
-  { href: "/about", label: "Tietoa minusta" },
-  { href: "/testimonials", label: "Kokemuksia" },
-  { href: "/giftcard", label: "Lahjakortti" },
-  { href: "/business", label: "Yrityksille" },
+  { href: "/#about", label: "Tietoa minusta" }, 
+  { href: "/#testimonials", label: "Kokemuksia" },
+  { href: "/#giftcard", label: "Lahjakortti" }, 
+  { href: "/#business", label: "Yrityksille" },
   { href: "/#contact", label: "Ota yhteyttä" }, 
 ];
 
