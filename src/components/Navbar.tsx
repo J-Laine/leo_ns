@@ -7,7 +7,7 @@ import { DarkModeToggle } from "./DarkModeToggle";
 
 const navItems = [
   { href: "/", label: "Etusivu" },
-  { href: "/services", label: "Palvelut" },
+  { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
   { href: "/about", label: "Tietoa minusta" },
   { href: "/testimonials", label: "Kokemuksia" },
   { href: "/giftcard", label: "Lahjakortti" },

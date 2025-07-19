@@ -10,7 +10,7 @@ export function Footer() {
           {/* Google Maps - takes up 2 columns on large screens */}
           <div className="lg:col-span-2 order-2 lg:order-1">
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-              Löydä meidät
+              Löydä minut
             </h3>
             <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700">
               <iframe
@@ -51,7 +51,7 @@ export function Footer() {
             {/* Social Media Links */}
             <div className="pt-4">
               <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                Seuraa meitä
+                Seuraa minua
               </h4>
               <div className="flex space-x-3 sm:space-x-4">
                 <a 
