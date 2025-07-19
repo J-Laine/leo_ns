@@ -12,12 +12,24 @@ const navItems = [
   { href: "/testimonials", label: "Kokemuksia" },
   { href: "/giftcard", label: "Lahjakortti" },
   { href: "/business", label: "Yrityksille" },
-  { href: "/contact", label: "Yhteystiedot" },
+  { href: "/#contact", label: "Ota yhteyttä" }, 
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const path = usePathname();
+
+  const handleNavClick = (href: string) => {
+    setOpen(false);
+
+    // If it's a hash link and we're on the home page, scroll to element
+    if (href.startsWith("/#") && path === "/") {
+      const element = document.querySelector(href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 shadow-sm">
@@ -30,6 +42,7 @@ export function Navbar() {
               key={href}
               href={href}
               className={`hover:text-blue-600 transition ${path === href ? "font-semibold underline" : ""}`}
+              onClick={() => handleNavClick(href)}
             >
               {label}
             </Link>
@@ -49,7 +62,7 @@ export function Navbar() {
               key={href}
               href={href}
               className="block py-2 border-b border-zinc-200 dark:border-zinc-700"
-              onClick={() => setOpen(false)}
+              onClick={() => handleNavClick(href)}
             >
               {label}
             </Link>
