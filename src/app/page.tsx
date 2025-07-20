@@ -26,9 +26,9 @@ export default function Home() {
         <BookingButton href="/varaa-aika" />
       </section>
 
-      {/* Business Section */}
-      <section className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8">
-        <Business />
+      {/* Services and Pricing Section */}
+      <section className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8">
+        <ServicesAndPrices />
       </section>
 
       {/* About Me Section */}
@@ -36,9 +36,9 @@ export default function Home() {
         <AboutMe />
       </section>
 
-      {/* Services and Pricing Section */}
-      <section className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8">
-        <ServicesAndPrices />
+      {/* Business Section */}
+      <section className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8">
+        <Business />
       </section>
 
       {/* Testimonials Section */}

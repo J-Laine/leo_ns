@@ -28,7 +28,7 @@ export function Footer() {
           </div>
 
           {/* Location Information */}
-          <div className="space-y-4 lg:col-span-1 order-1 lg:order-2">
+          <div className="space-y-35 lg:col-span-1 order-1 lg:order-5">
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
               Sijainti
             </h3>
