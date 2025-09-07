@@ -43,10 +43,27 @@ const slides = [
 ];
 
 export default function ServiceCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    duration: 40, 
-});
+  const [isLargeScreen, setIsLargeScreen] = React.useState(true);
+  
+  // Check screen size
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1573);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    isLargeScreen ? { 
+      loop: true,
+      duration: 40, 
+    } : { 
+      watchDrag: false 
+    }
+  );
   
   // Existing hooks
   const { prevDisabled, nextDisabled, scrollPrev, scrollNext } = usePrevNextButtons(emblaApi);
@@ -109,7 +126,7 @@ export default function ServiceCarousel() {
   );
 
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi || !isLargeScreen) return;
 
     setTweenNodes(emblaApi);
     setTweenFactor(emblaApi);
@@ -121,70 +138,102 @@ export default function ServiceCarousel() {
       .on('reInit', tweenParallax)
       .on('scroll', tweenParallax)
       .on('slideFocus', tweenParallax);
-  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor]);
+  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor, isLargeScreen]);
 
   return (
     <div className={styles.embla}>
-      <div className={styles.embla__viewport_container}>
-        {/* Previous button */}
-        <button 
-          className={`${styles.embla__button} ${styles.embla__button_prev}`} 
-          onClick={scrollPrev}
-          disabled={prevDisabled}
-          aria-label="Previous slide"
-        >
-        </button>
+      {isLargeScreen ? (
+        // Large screen: Use Embla carousel
+        <div className={styles.embla__viewport_container}>
+          {/* Previous button */}
+          <button 
+            className={`${styles.embla__button} ${styles.embla__button_prev}`} 
+            onClick={scrollPrev}
+            disabled={prevDisabled}
+            aria-label="Previous slide"
+          >
+          </button>
 
-        {/* Main carousel */}
-        <div className={styles.embla__viewport} ref={emblaRef}>
-          <div className={styles.embla__container}>
-            {slides.map((slide, index) => (
-              <div className={styles.embla__slide} key={index}>
-                <div className={styles.embla__parallax}>
-                  <div className={styles.embla__parallax__layer}>
-                    <Image
-                      src={slide.background}
-                      alt={slide.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
-                      style={{ objectFit: 'cover' }}
-                      className={styles.embla__parallax__img}
-                      quality={95}
-                      priority={index === 0}
-                    />
+          {/* Main carousel */}
+          <div className={styles.embla__viewport} ref={emblaRef}>
+            <div className={styles.embla__container}>
+              {slides.map((slide, index) => (
+                <div className={styles.embla__slide} key={index}>
+                  <div className={styles.embla__parallax}>
+                    <div className={styles.embla__parallax__layer}>
+                      <Image
+                        src={slide.background}
+                        alt={slide.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+                        style={{ objectFit: 'cover' }}
+                        className={styles.embla__parallax__img}
+                        quality={95}
+                        priority={index === 0}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className={styles["embla__text-overlay"]}>
+                    <h2>{slide.title}</h2>
+                    <p>{slide.description}</p>
                   </div>
                 </div>
-                
-                <div className={styles["embla__text-overlay"]}>
-                  <h2>{slide.title}</h2>
-                  <p>{slide.description}</p>
+              ))}
+            </div>
+          </div>
+          
+          {/* Next button */}
+          <button 
+            className={`${styles.embla__button} ${styles.embla__button_next}`} 
+            onClick={scrollNext}
+            disabled={nextDisabled}
+            aria-label="Next slide"
+          >
+          </button>
+        </div>
+      ) : (
+        // Small screen: Use simple scrollable div
+        <div className={styles.embla__scroll_container}>
+          {slides.map((slide, index) => (
+            <div className={styles.embla__slide} key={index}>
+              <div className={styles.embla__parallax}>
+                <div className={styles.embla__parallax__layer}>
+                  <Image
+                    src={slide.background}
+                    alt={slide.title}
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: 'cover' }}
+                    className={styles.embla__parallax__img}
+                    quality={95}
+                    priority={index === 0}
+                  />
                 </div>
               </div>
-            ))}
-          </div>
+              
+              <div className={styles["embla__text-overlay"]}>
+                <h2>{slide.title}</h2>
+                <p>{slide.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
-        
-        {/* Next button */}
-        <button 
-          className={`${styles.embla__button} ${styles.embla__button_next}`} 
-          onClick={scrollNext}
-          disabled={nextDisabled}
-          aria-label="Next slide"
-        >
-        </button>
-      </div>
+      )}
       
-      {/* Dot indicators */}
-      <div className={styles.embla__dots}>
-        {scrollSnaps.map((_, index) => (
-          <button
-            key={index}
-            className={`${styles.embla__dot} ${index === selectedIndex ? styles["embla__dot--selected"] : ""}`}
-            onClick={() => scrollTo(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Dot indicators - only show on large screens */}
+      {isLargeScreen && (
+        <div className={styles.embla__dots}>
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.embla__dot} ${index === selectedIndex ? styles["embla__dot--selected"] : ""}`}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
