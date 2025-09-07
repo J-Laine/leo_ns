@@ -14,31 +14,31 @@ const slides = [
     title: "Klassinen ja urheiluhieronta",
     description:
       "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuuta sekä rauhoittaa ja rentouttaa kehoa.",
-    background: "/kahvi.jpg",
+    background: "/urheiluhieronta.jpg",
   },
   {
     title: "IASTM-käsittely",
     description:
       "IASTM (Instrument Assisted Soft Tissue Mobilization) on hoitomenetelmä, joka hyödyntää tietynlaisesti muotoiltuja instrumentteja pehmytkudosten, kuten lihasten, jänteiden ja fasciarakenteiden käsittelyssä. Tämä lähestymistapa on suunniteltu parantamaan kudosten liikkuvuutta, vähentämään kipua ja edistämään paranemista erilaisissa tuki- ja liikuntaelinten vaivoissa.",
-    background: "/mansikka.jpg",
+    background: "/kalvorauta.jpg",
   },
   {
     title: "Purentalihashieronta",
     description:
       "Purentalihashieronta sopii esimerkiksi hampaiden narskuttelusta, huimauksesta, tinnituksesta tai päänsärystä kärsiville. Purentalihashieronnassa käsitellään purentalihaksia sekä suun ulko- että sisäpuolelta. Myös kaulan, niskan ja kallonpohjan lihakset käydään tarkasti läpi.",
-    background: "/kokis.jpg",
+    background: "/purentalihashieronta.jpg",
   },
   {
     title: "Myofaskiaalinen kuppaus / kuivakuppaus",
     description:
       "Kuppaus lieventää kipua, parantaa liikkuvuutta, vapauttaa triggerpisteitä ja edistää lymfanestekiertoa sekä verenkiertoa.",
-    background: "/lasi.jpg",
+    background: "/kuivakuppaus.jpg",
   },
   {
     title: "Kinesioteippaus",
     description:
       "Kinesioteippaus on erilaisten tuki- ja liikuntaelinvaivojen hoitomenetelmä, jossa käytetään joustavaa ja hengittävää teippiä. Käytetään kiputilojen lievitykseen, asennon korjaamiseen sekä liikkeen ohjaamiseen.",
-    background: "/lasiV2.jpg",
+    background: "/urheiluteippaus.jpg",
   },
 ];
 
@@ -146,9 +146,11 @@ export default function ServiceCarousel() {
                       src={slide.background}
                       alt={slide.title}
                       fill
-                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 40vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
                       style={{ objectFit: 'cover' }}
                       className={styles.embla__parallax__img}
+                      quality={95}
+                      priority={index === 0}
                     />
                   </div>
                 </div>
