@@ -25,6 +25,16 @@ export function AboutMe({ className = "" }: AboutMeProps) {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
           Leo Pessi
         </h2>
+        <div className="relative w-64 h-64 mx-auto mb-4">
+          <Image
+            src="/profiilikuva.JPG"
+            alt="Leo Pessi - Koulutettu hieroja"
+            fill
+            className="rounded-full object-cover object-[50%_55%] border-4 border-zinc-200 dark:border-zinc-700 shadow-lg"
+            sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 192px"
+            priority
+          />
+        </div>
         <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 mb-4">
           Koulutettu Hieroja & urheiluhieroja Tampereella
         </p>
