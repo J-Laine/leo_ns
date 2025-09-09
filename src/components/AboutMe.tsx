@@ -79,32 +79,33 @@ export function AboutMe({ className = "" }: AboutMeProps) {
       </div>
 
       {/* Education Section */}
-      <div className="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 shadow-lg overflow-hidden mb-8">
-        <div className="bg-zinc-50 dark:bg-zinc-700 px-4 sm:px-6 py-3 border-b border-zinc-200 dark:border-zinc-600">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Koulutukseni</h3>
-        </div>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <tbody>
-              {education.map((item, index) => (
-                <tr 
-                  key={index}
-                  className="border-t border-zinc-200 dark:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-700/30 transition-colors duration-200"
-                >
-                  <td className="py-3 px-4 sm:px-6 text-sm sm:text-base text-zinc-900 dark:text-zinc-100">
-                    {item.course}
-                  </td>
-                  <td className="py-3 px-4 sm:px-6 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 text-center">
+      <div className="mb-8">
+        <h3 className="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4 text-center">
+          Koulutukseni
+        </h3>
+
+        {/* Grid for Education Items */}
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
+          {education.map((item, index) => (
+            <div
+              key={index}
+              className="bg-zinc-50 dark:bg-zinc-700 rounded-lg p-3 sm:p-4 border border-zinc-200 dark:border-zinc-600"
+            >
+              <div className="flex flex-col space-y-1">
+                <h4 className="font-semibold text-sm sm:text-base text-zinc-900 dark:text-zinc-100 leading-tight">
+                  {item.course}
+                </h4>
+                <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1 xs:gap-2">
+                  <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-medium">
                     {item.year}
-                  </td>
-                  <td className="py-3 px-4 sm:px-6 text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 text-right">
+                  </span>
+                  <span className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-500">
                     {item.institution}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
