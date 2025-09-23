@@ -14,31 +14,31 @@ const slides = [
     title: "Klassinen ja urheiluhieronta",
     description:
       "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuuta sekä rauhoittaa ja rentouttaa kehoa.",
-    background: "/urheiluhieronta.jpg",
+    background: "/urheiluhieronta.JPG",
   },
   {
     title: "IASTM-käsittely",
     description:
       "IASTM (Instrument Assisted Soft Tissue Mobilization) on hoitomenetelmä, joka hyödyntää tietynlaisesti muotoiltuja instrumentteja pehmytkudosten, kuten lihasten, jänteiden ja fasciarakenteiden käsittelyssä. Tämä lähestymistapa on suunniteltu parantamaan kudosten liikkuvuutta, vähentämään kipua ja edistämään paranemista erilaisissa tuki- ja liikuntaelinten vaivoissa.",
-    background: "/kalvorauta.jpg",
+    background: "/kalvorauta.JPG",
   },
   {
     title: "Purentalihashieronta",
     description:
       "Purentalihashieronta sopii esimerkiksi hampaiden narskuttelusta, huimauksesta, tinnituksesta tai päänsärystä kärsiville. Purentalihashieronnassa käsitellään purentalihaksia sekä suun ulko- että sisäpuolelta. Myös kaulan, niskan ja kallonpohjan lihakset käydään tarkasti läpi.",
-    background: "/purentalihashieronta.jpg",
+    background: "/purentalihashieronta.JPG",
   },
   {
     title: "Myofaskiaalinen kuppaus / kuivakuppaus",
     description:
       "Kuppaus lieventää kipua, parantaa liikkuvuutta, vapauttaa triggerpisteitä ja edistää lymfanestekiertoa sekä verenkiertoa.",
-    background: "/kuivakuppaus.jpg",
+    background: "/kuivakuppaus.JPG",
   },
   {
     title: "Kinesioteippaus",
     description:
       "Kinesioteippaus on erilaisten tuki- ja liikuntaelinvaivojen hoitomenetelmä, jossa käytetään joustavaa ja hengittävää teippiä. Käytetään kiputilojen lievitykseen, asennon korjaamiseen sekä liikkeen ohjaamiseen.",
-    background: "/urheiluteippaus.jpg",
+    background: "/urheiluteippaus.JPG",
   },
 ];
 
@@ -154,86 +154,61 @@ export default function ServiceCarousel() {
           >
           </button>
 
-          {/* Main carousel */}
-          <div className={styles.embla__viewport} ref={emblaRef}>
-            <div className={styles.embla__container}>
-              {slides.map((slide, index) => (
-                <div className={styles.embla__slide} key={index}>
-                  <div className={styles.embla__parallax}>
-                    <div className={styles.embla__parallax__layer}>
-                      <Image
-                        src={slide.background}
-                        alt={slide.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
-                        style={{ objectFit: 'cover' }}
-                        className={styles.embla__parallax__img}
-                        quality={95}
-                        priority={index === 0}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className={styles["embla__text-overlay"]}>
-                    <h2>{slide.title}</h2>
-                    <p>{slide.description}</p>
+        {/* Main carousel */}
+        <div className={styles.embla__viewport} ref={emblaRef}>
+          <div className={styles.embla__container}>
+            {slides.map((slide, index) => (
+              <div className={styles.embla__slide} key={index}>
+                <div className={styles.embla__parallax}>
+                  <div className={styles.embla__parallax__layer}>
+                    <Image
+                      src={slide.background}
+                      alt={`${slide.title} - Leo Pessi hierontapalvelut`}
+                      fill
+                      quality={95}  // High quality (1-100, default is 75)
+                      priority={index === 0 || index === 1 || index === slides.length - 1}  // Preload first, second, and last images
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw"
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center center'
+                      }}
+                      className={styles.embla__parallax__img}
+                      placeholder="blur"  // Optional: smooth loading
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyjtlQznqfvv8CRmk=" // Optional: blur placeholder
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
+                
+                <div className={styles["embla__text-overlay"]}>
+                  <h2>{slide.title}</h2>
+                  <p>{slide.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          
-          {/* Next button */}
-          <button 
-            className={`${styles.embla__button} ${styles.embla__button_next}`} 
-            onClick={scrollNext}
-            disabled={nextDisabled}
-            aria-label="Next slide"
-          >
-          </button>
         </div>
-      ) : (
-        // Small screen: Use simple scrollable div
-        <div className={styles.embla__scroll_container}>
-          {slides.map((slide, index) => (
-            <div className={styles.embla__slide} key={index}>
-              <div className={styles.embla__parallax}>
-                <div className={styles.embla__parallax__layer}>
-                  <Image
-                    src={slide.background}
-                    alt={slide.title}
-                    fill
-                    sizes="100vw"
-                    style={{ objectFit: 'cover' }}
-                    className={styles.embla__parallax__img}
-                    quality={95}
-                    priority={index === 0}
-                  />
-                </div>
-              </div>
-              
-              <div className={styles["embla__text-overlay"]}>
-                <h2>{slide.title}</h2>
-                <p>{slide.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+        
+        {/* Next button */}
+        <button 
+          className={`${styles.embla__button} ${styles.embla__button_next}`} 
+          onClick={scrollNext}
+          disabled={nextDisabled}
+          aria-label="Next slide"
+        >
+        </button>
+      </div>
       
-      {/* Dot indicators - only show on large screens */}
-      {isLargeScreen && (
-        <div className={styles.embla__dots}>
-          {scrollSnaps.map((_, index) => (
-            <button
-              key={index}
-              className={`${styles.embla__dot} ${index === selectedIndex ? styles["embla__dot--selected"] : ""}`}
-              onClick={() => scrollTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      {/* Dot indicators */}
+      <div className={styles.embla__dots}>
+        {scrollSnaps.map((_, index) => (
+          <button
+            key={index}
+            className={`${styles.embla__dot} ${index === selectedIndex ? styles["embla__dot--selected"] : ""}`}
+            onClick={() => scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
