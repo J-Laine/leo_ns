@@ -26,34 +26,34 @@ export default function Home() {
         <BookingButton href="/varaa-aika" />
       </section>
 
-      {/* Services and Pricing Section */}
-      <section className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8">
-        <ServicesAndPrices />
-      </section>
-
       {/* About Me Section */}
-      <section className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8">
+      <section id="about" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
         <AboutMe />
       </section>
 
-      {/* Business Section */}
-      <section className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8">
-        <Business />
+      {/* Services and Pricing Section */}
+      <section id="services-pricing" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+        <ServicesAndPrices />
       </section>
 
       {/* Testimonials Section */}
-      <section className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8">
+      <section id="testimonials" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
         <Testimonials />
       </section>
 
-      {/* Contact Form Section */}
-      <section className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[650px] px-4 sm:px-6 md:px-8">
-        <ContactForm />
+      {/* Gift Card Section */}
+      <section id="giftcard" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+        <Lahjakortti />
       </section>
 
-      {/* Gift Card Section */}
-      <section className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8">
-        <Lahjakortti />
+      {/* Business Section */}
+      <section id="business" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+        <Business />
+      </section>
+
+      {/* Contact Form Section */}
+      <section id="contact" className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[650px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+        <ContactForm />
       </section>
 
     </div>

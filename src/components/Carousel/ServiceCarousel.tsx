@@ -197,7 +197,8 @@ export default function ServiceCarousel() {
         >
         </button>
       </div>
-      
+      ) : null}
+
       {/* Dot indicators */}
       <div className={styles.embla__dots}>
         {scrollSnaps.map((_, index) => (

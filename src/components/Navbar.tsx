@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
 
 const navItems = [
-  { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
   { href: "/#about", label: "Tietoa minusta" }, 
+  { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
   { href: "/#testimonials", label: "Kokemuksia" },
   { href: "/#giftcard", label: "Lahjakortti" }, 
   { href: "/#business", label: "Yrityksille" },
@@ -23,10 +23,12 @@ export function Navbar() {
 
     // If it's a hash link and we're on the home page, scroll to element
     if (href.startsWith("/#") && path === "/") {
-      const element = document.querySelector(href.substring(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      setTimeout(() => {
+        const element = document.querySelector(href.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
   };
 
