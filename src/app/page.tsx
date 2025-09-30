@@ -23,7 +23,7 @@ export default function Home() {
       
       {/* Booking Section */}
       <section className="px-4 sm:px-6 md:px-8">
-        <BookingButton href="/varaa-aika" />
+        <BookingButton />
       </section>
 
       {/* About Me Section */}
