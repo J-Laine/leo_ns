@@ -7,6 +7,7 @@ import { AboutMe } from '@/components/AboutMe';
 import { Lahjakortti } from '@/components/Giftcard';
 import { Business } from '@/components/Business';
 import { Testimonials } from '@/components/Testimonials';
+import MobileServices from "../components/Carousel/MobileServices";
 
 export default function Home() {
   return (
@@ -17,8 +18,16 @@ export default function Home() {
       </section>
       
       {/* Services Section */}
-      <section className="flex items-center justify-center min-h-[350px] sm:min-h-[400px] md:min-h-[450px] px-4 sm:px-6 md:px-8">
-        <ServiceCarousel/>
+      <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
+        {/* Mobile Services */}
+        <div className="block md:hidden w-full">
+          <MobileServices />
+        </div>
+        
+        {/* Desktop Carousel */}
+        <div className="hidden md:block w-full max-w-7xl">
+          <ServiceCarousel />
+        </div>
       </section>
       
       {/* Booking Section */}

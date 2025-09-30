@@ -43,27 +43,10 @@ const slides = [
 ];
 
 export default function ServiceCarousel() {
-  const [isLargeScreen, setIsLargeScreen] = React.useState(true);
-  
-  // Check screen size
-  React.useEffect(() => {
-    const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1573);
-    };
-    
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    isLargeScreen ? { 
-      loop: true,
-      duration: 40, 
-    } : { 
-      watchDrag: false 
-    }
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    duration: 40, 
+  });
   
   // Existing hooks
   const { prevDisabled, nextDisabled, scrollPrev, scrollNext } = usePrevNextButtons(emblaApi);
@@ -126,7 +109,7 @@ export default function ServiceCarousel() {
   );
 
   useEffect(() => {
-    if (!emblaApi || !isLargeScreen) return;
+    if (!emblaApi) return;
 
     setTweenNodes(emblaApi);
     setTweenFactor(emblaApi);
@@ -138,21 +121,19 @@ export default function ServiceCarousel() {
       .on('reInit', tweenParallax)
       .on('scroll', tweenParallax)
       .on('slideFocus', tweenParallax);
-  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor, isLargeScreen]);
+  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor]);
 
   return (
     <div className={styles.embla}>
-      {isLargeScreen ? (
-        // Large screen: Use Embla carousel
-        <div className={styles.embla__viewport_container}>
-          {/* Previous button */}
-          <button 
-            className={`${styles.embla__button} ${styles.embla__button_prev}`} 
-            onClick={scrollPrev}
-            disabled={prevDisabled}
-            aria-label="Previous slide"
-          >
-          </button>
+      <div className={styles.embla__viewport_container}>
+        {/* Previous button */}
+        <button 
+          className={`${styles.embla__button} ${styles.embla__button_prev}`} 
+          onClick={scrollPrev}
+          disabled={prevDisabled}
+          aria-label="Previous slide"
+        >
+        </button>
 
         {/* Main carousel */}
         <div className={styles.embla__viewport} ref={emblaRef}>
@@ -165,16 +146,16 @@ export default function ServiceCarousel() {
                       src={slide.background}
                       alt={`${slide.title} - Leo Pessi hierontapalvelut`}
                       fill
-                      quality={95}  // High quality (1-100, default is 75)
-                      priority={index === 0 || index === 1 || index === slides.length - 1}  // Preload first, second, and last images
+                      quality={95}
+                      priority={index === 0 || index === 1 || index === slides.length - 1}
                       sizes="(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw"
                       style={{ 
                         objectFit: 'cover',
                         objectPosition: 'center center'
                       }}
                       className={styles.embla__parallax__img}
-                      placeholder="blur"  // Optional: smooth loading
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyjtlQznqfvv8CRmk=" // Optional: blur placeholder
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyjtlQznqfvv8CRmk="
                     />
                   </div>
                 </div>
@@ -197,7 +178,6 @@ export default function ServiceCarousel() {
         >
         </button>
       </div>
-      ) : null}
 
       {/* Dot indicators */}
       <div className={styles.embla__dots}>
