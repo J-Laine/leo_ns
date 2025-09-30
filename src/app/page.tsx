@@ -25,7 +25,11 @@ export default function Home() {
         </div>
         
         {/* Desktop Carousel */}
-        <div className="hidden md:block w-full max-w-7xl">
+        <div className="hidden md:block w-full" style={{
+          maxWidth: '3400px',
+          width: '100%',
+          padding: '0 clamp(2rem, calc((100vw - 1620px) / 2 + 2rem), calc((3400px - 1620px) / 2 + 2rem))'
+        }}>
           <ServiceCarousel />
         </div>
       </section>
