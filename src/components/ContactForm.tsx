@@ -258,11 +258,6 @@ export function ContactForm({ className = "" }: ContactFormProps) {
             'Lähetä viesti'
           )}
         </button>
-
-        {/* Privacy notice */}
-        <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center">
-          Lähettämällä viestin hyväksyt, että käsittelemme antamiasi tietoja yhteydenoton tarkoituksessa.
-        </p>
       </form>
     </div>
   );
