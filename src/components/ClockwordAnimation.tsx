@@ -22,10 +22,11 @@ export default function ClockWordAnimation() {
 
   return (
     <div 
-      className="w-screen -mx-4 sm:-mx-6 md:-mx-8 min-h-[130px] sm:min-h-[350px] md:min-h-[550px] bg-cover bg-top bg-no-repeat flex items-center justify-center relative"
+      className="w-screen -mx-4 sm:-mx-6 md:-mx-8 min-h-[300px] sm:min-h-[400px] md:min-h-[500px] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
       style={{ 
         backgroundImage: "url('/Banneri.png')",
-        backgroundPosition: "center -180px"
+        backgroundSize: "cover",
+        backgroundPosition: "center center"
       }}
     >
       {/* Overlay for better text readability */}
