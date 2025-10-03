@@ -35,7 +35,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 shadow-sm">
       <div className="flex justify-between items-center px-4 sm:px-8 md:px-16 lg:px-32 h-16">
-        <Link href="/" className="font-bold text-xl tracking-tight">Leo Pessi</Link>
+        <Link href="/" className="font-bold text-xl tracking-tight">Koulutettu Hieroja Leo Pessi</Link>
 
         <nav className="hidden md:flex gap-6 items-center">
           {navItems.map(({ href, label }) => (

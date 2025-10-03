@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useEffect, useState } from "react";
 import styles from '../css/ClockWordAnimation.module.css'
 
@@ -22,16 +21,28 @@ export default function ClockWordAnimation() {
   }, []);
 
   return (
-    <div className="w-full max-w-[95vw] px-4 sm:px-6 md:px-8">
-      <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center">
-        <span className={`${styles.wordWrapper} relative inline-block overflow-hidden w-full`}>
-          <span 
-            className={`${styles.rotatingWord} ${isAnimating ? styles.animateOut : styles.animateIn} block text-center leading-relaxed sm:leading-normal`}
-          >
-            {sentences[index]}
+    <div 
+      className="w-screen -mx-4 sm:-mx-6 md:-mx-8 min-h-[130px] sm:min-h-[350px] md:min-h-[550px] bg-cover bg-top bg-no-repeat flex items-center justify-center relative"
+      style={{ 
+        backgroundImage: "url('/Banneri.png')",
+        backgroundPosition: "center -180px"
+      }}
+    >
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/30"></div>
+      
+      <div className="px-4 sm:px-6 md:px-8">
+        <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center text-white relative z-10">
+          <span className={`${styles.wordWrapper} relative inline-block overflow-hidden w-full drop-shadow-lg`}>
+            <span 
+              className={`${styles.rotatingWord} ${isAnimating ? styles.animateOut : styles.animateIn} block text-center leading-relaxed sm:leading-normal`}
+              style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
+            >
+              {sentences[index]}
+            </span>
           </span>
-        </span>
-      </h1>
+        </h1>
+      </div>
     </div>
   );
 }

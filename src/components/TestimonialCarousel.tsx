@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 
-interface TestimonialsProps {
+interface TestimonialCarouselProps {
   className?: string;
 }
 
-export function Testimonials({ className = "" }: TestimonialsProps) {
+export function TestimonialCarousel({ className = "" }: TestimonialCarouselProps) {
   useEffect(() => {
     // Load Elfsight script
     const script = document.createElement('script');
@@ -23,16 +23,9 @@ export function Testimonials({ className = "" }: TestimonialsProps) {
   }, []);
 
   return (
-    <div id="testimonials" className={`w-full max-w-4xl mx-auto scroll-mt-20 ${className}`}>
-      {/* Header */}
-      <div className="text-center mb-8 sm:mb-10">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-          Google Arvostelut
-        </h2>
-      </div>
-
+    <div className={`w-full max-w-8x2 mx-auto ${className}`}>
       {/* Elfsight Google Reviews Widget */}
-      <div className="elfsight-app-6c91a302-55ad-42eb-9e0b-c24320d9e846" data-elfsight-app-lazy></div>
+      <div className="elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9" data-elfsight-app-lazy></div>
     </div>
   );
 }

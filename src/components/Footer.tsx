@@ -32,7 +32,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
               Sijainti
             </h3>
-            <div className="space-y-3 text-zinc-600 dark:text-zinc-400">
+            <div className="space-y-7 text-zinc-600 dark:text-zinc-400">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 mt-0.5 text-zinc-500 dark:text-zinc-400 flex-shrink-0" />
                 <div>
@@ -44,6 +44,9 @@ export function Footer() {
               <div className="mt-4">
                 <p className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
                   Koulutettu hieroja & urheiluhieroja Leo Pessi
+                </p>
+                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+                  Y-tunnus: 3456811-2
                 </p>
               </div>
             </div>

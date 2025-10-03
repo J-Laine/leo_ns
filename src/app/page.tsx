@@ -8,6 +8,7 @@ import { Lahjakortti } from '@/components/Giftcard';
 import { Business } from '@/components/Business';
 import { Testimonials } from '@/components/Testimonials';
 import MobileServices from "../components/Carousel/MobileServices";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 
 export default function Home() {
   return (
@@ -16,7 +17,11 @@ export default function Home() {
       <section className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[450px] px-4 sm:px-6 md:px-8">
         <ClockWordAnimation />
       </section>
-      
+      {/*Testimonial Carousel Section */}
+      <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
+        <TestimonialCarousel />
+      </section>
+
       {/* Services Section */}
       <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
         {/* Mobile Services */}
