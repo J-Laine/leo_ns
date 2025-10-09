@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/hieront4/leo_ns/
+    - /bin/rsync -av --exclude='.git' --exclude='node_modules' --exclude='.gitignore' --exclude='README.md' ./ $DEPLOYPATH
+    - cd $DEPLOYPATH && npm install --production
