@@ -2,7 +2,15 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/hieront4/leo_ns/
-    - /bin/cp -R . $DEPLOYPATH
-    - cd $DEPLOYPATH && npm install
-    - cd $DEPLOYPATH && npm run build
-    - cd $DEPLOYPATH && npm prune --production
+    - /bin/rm -rf $DEPLOYPATH/.next
+    - /bin/rm -rf $DEPLOYPATH/node_modules
+    - /bin/cp -R .next $DEPLOYPATH/
+    - /bin/cp -R public $DEPLOYPATH/
+    - /bin/cp -R src $DEPLOYPATH/
+    - /bin/cp package.json $DEPLOYPATH/
+    - /bin/cp server.js $DEPLOYPATH/
+    - /bin/cp next.config.ts $DEPLOYPATH/
+    - /bin/cp tsconfig.json $DEPLOYPATH/
+    - /bin/cp next-env.d.ts $DEPLOYPATH/
+    - /bin/cp postcss.config.mjs $DEPLOYPATH/
+    - cd $DEPLOYPATH && npm install --only=production
