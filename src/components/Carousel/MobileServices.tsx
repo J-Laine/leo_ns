@@ -41,31 +41,32 @@ export default function MobileServices() {
       <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6 text-center">
         Palvelut
       </h2>
-      <div className="space-y-4">
+      <div className="space-y-6">
         {services.map((service, index) => (
           <div 
             key={index}
             className="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 shadow-lg p-4 transition-all duration-300"
           >
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={80}
-                  height={80}
-                  className="rounded-lg object-cover"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+            {/* Image - almost full width */}
+            <div className="w-full mb-4">
+              <Image
+                src={service.image}
+                alt={service.title}
+                width={400}
+                height={200}
+                className="w-full h-48 rounded-lg object-cover"
+              />
             </div>
+            
+            {/* Header */}
+            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+              {service.title}
+            </h3>
+            
+            {/* Description */}
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              {service.description}
+            </p>
           </div>
         ))}
       </div>
