@@ -140,7 +140,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
           Ota yhteyttä
         </h2>
         <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-          Kerro tarpeistasi ja varaathan ajan hierontaan
+          Jotain kysyttävää? Ota rohkeasti yhteyttä! Vastaan mahdollisimman pian.
         </p>
       </div>
 
