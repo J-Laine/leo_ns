@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import '../css/Testimonials.css';
 
 interface TestimonialsProps {
   className?: string;
