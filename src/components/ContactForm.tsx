@@ -75,8 +75,8 @@ export function ContactForm({ className = "" }: ContactFormProps) {
       return;
     }
     
-    // Replace with your actual Web3Forms access key
-    formData.append("access_key", "5db00de7-ac42-4a6d-ae13-91cb6e46f760");
+      //leon access key
+    formData.append("access_key", "c7fda337-67bc-4eaa-9fc4-2493b1b635da");
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
