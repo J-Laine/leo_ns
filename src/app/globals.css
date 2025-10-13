@@ -15,3 +15,34 @@
   }
 }
 
+/* Dark mode styles for Elfsight Google Reviews widget */
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 {
+  /* Invert colors for dark mode */
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 img {
+  /* Re-invert images to show them correctly */
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* More specific approach - customize individual elements */
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 .eapps-widget-content {
+  background-color: rgb(31 41 55) !important; /* gray-800 */
+  color: rgb(249 250 251) !important; /* gray-50 */
+}
+
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 .eapps-reviews-item {
+  background-color: rgb(55 65 81) !important; /* gray-700 */
+  border-color: rgb(75 85 99) !important; /* gray-600 */
+}
+
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 .eapps-reviews-item-text {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+.dark .elfsight-app-9b728c26-d57b-488b-8d8c-42734ea61fe9 .eapps-reviews-item-name {
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+
