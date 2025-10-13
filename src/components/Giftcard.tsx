@@ -104,7 +104,7 @@ export function Lahjakortti({ className = "" }: LahjakorttiProps) {
           
           <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
             Lahjakortin ostaminen onnistuu vaivattomasti toimipisteelläni. Ota yhteyttä alla olevalla 
-            lomakkeella ja sovitaan aika lahjakortin noudolle!
+            lomakkeella ja sovitaan aika lahjakortin noudolle.
           </p>
         </div>
       </div>
