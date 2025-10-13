@@ -36,8 +36,3 @@
 .dark .elfsight-app-6c91a302-55ad-42eb-9e0b-c24320d9e846 .eapps-reviews-item-date {
   color: rgb(156 163 175) !important; /* gray-400 */
 }
-
-/* Stars remain yellow in both modes */
-.dark .elfsight-app-6c91a302-55ad-42eb-9e0b-c24320d9e846 .eapps-reviews-item-stars {
-  filter: none !important;
-}
