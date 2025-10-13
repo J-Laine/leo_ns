@@ -166,7 +166,7 @@ export function AboutMe({ className = "" }: AboutMeProps) {
 
       {/* Education Section */}
       <div className="mb-8">
-        <h3 className="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4 text-center">
+        <h3 className="text-xl sm:text-4xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4 text-center">
           Koulutukseni
         </h3>
 
