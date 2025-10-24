@@ -9,71 +9,83 @@ import { Business } from '@/components/Business';
 import { Testimonials } from '@/components/Testimonials';
 import MobileServices from "../components/Carousel/MobileServices";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { Metadata } from 'next';
+import { generatePageMetadata } from '../config/seo.config';
+import { BreadcrumbJsonLd } from '@/utils/jsonLd';
+
+export const metadata: Metadata = generatePageMetadata('/');
 
 export default function Home() {
   return (
-    <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20">
-      {/* Hero Section with ClockWordAnimation */}
-      <section className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[450px] px-4 sm:px-6 md:px-8">
-        <ClockWordAnimation />
-      </section>
-      {/*Testimonial Carousel Section */}
-      <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
-        <TestimonialCarousel />
-      </section>
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Etusivu', item: 'https://hierontaleopessi.fi/' },
+        ]}
+      />
+      <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20">
+        {/* Hero Section with ClockWordAnimation */}
+        <section className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[450px] px-4 sm:px-6 md:px-8">
+          <ClockWordAnimation />
+        </section>
+        {/*Testimonial Carousel Section */}
+        <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
+          <TestimonialCarousel />
+        </section>
 
-      {/* Services Section */}
-      <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
-        {/* Mobile Services */}
-        <div className="block md:hidden w-full">
-          <MobileServices />
-        </div>
+        {/* Services Section */}
+        <section className="w-full px-4 sm:px-6 md:px-8 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex items-center justify-center">
+          {/* Mobile Services */}
+          <div className="block md:hidden w-full">
+            <MobileServices />
+          </div>
+          
+          {/* Desktop Carousel */}
+          <div className="hidden md:block w-full" style={{
+            maxWidth: '3400px',
+            width: '100%',
+            padding: '0 clamp(2rem, calc((100vw - 1620px) / 2 + 2rem), calc((3400px - 1620px) / 2 + 2rem))'
+          }}>
+            <ServiceCarousel />
+          </div>
+        </section>
         
-        {/* Desktop Carousel */}
-        <div className="hidden md:block w-full" style={{
-          maxWidth: '3400px',
-          width: '100%',
-          padding: '0 clamp(2rem, calc((100vw - 1620px) / 2 + 2rem), calc((3400px - 1620px) / 2 + 2rem))'
-        }}>
-          <ServiceCarousel />
-        </div>
-      </section>
-      
-      {/* Booking Section */}
-      <section className="px-4 sm:px-6 md:px-8">
-        <BookingButton />
-      </section>
+        {/* Booking Section */}
+        <section className="px-4 sm:px-6 md:px-8">
+          <BookingButton />
+        </section>
 
-      {/* About Me Section */}
-      <section id="about" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <AboutMe />
-      </section>
+        {/* About Me Section */}
+        <section id="about" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <AboutMe />
+        </section>
 
-      {/* Services and Pricing Section */}
-      <section id="services-pricing" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <ServicesAndPrices />
-      </section>
+        {/* Services and Pricing Section */}
+        <section id="services-pricing" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <ServicesAndPrices />
+        </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <Testimonials />
-      </section>
+        {/* Testimonials Section */}
+        <section id="testimonials" className="flex items-center justify-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <Testimonials />
+        </section>
 
-      {/* Gift Card Section */}
-      <section id="giftcard" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <Lahjakortti />
-      </section>
+        {/* Gift Card Section */}
+        <section id="giftcard" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <Lahjakortti />
+        </section>
 
-      {/* Business Section */}
-      <section id="business" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <Business />
-      </section>
+        {/* Business Section */}
+        <section id="business" className="flex items-center justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <Business />
+        </section>
 
-      {/* Contact Form Section */}
-      <section id="contact" className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[650px] px-4 sm:px-6 md:px-8 scroll-mt-20">
-        <ContactForm />
-      </section>
+        {/* Contact Form Section */}
+        <section id="contact" className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[650px] px-4 sm:px-6 md:px-8 scroll-mt-20">
+          <ContactForm />
+        </section>
 
-    </div>
+      </div>
+    </>
   );
 }

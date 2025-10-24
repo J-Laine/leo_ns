@@ -5,16 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
 
-const navItems = [
-  { href: "/#about", label: "Tietoa minusta" }, 
-  { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
-  { href: "/#testimonials", label: "Kokemuksia" },
-  { href: "/#giftcard", label: "Lahjakortti" }, 
-  { href: "/#business", label: "Yrityksille" },
-  { href: "/#contact", label: "Ota yhteyttä" }, 
-];
-
-export function Navbar() {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const path = usePathname();
 
@@ -32,13 +23,22 @@ export function Navbar() {
     }
   };
 
+  const navLinks = [
+    { href: "/#about", label: "Tietoa minusta" }, 
+    { href: "/#services-pricing", label: "Palvelut ja hinnasto" },
+    { href: "/#testimonials", label: "Kokemuksia" },
+    { href: "/#giftcard", label: "Lahjakortti" }, 
+    { href: "/#business", label: "Yrityksille" },
+    { href: "/#contact", label: "Ota yhteyttä" }, 
+  ];
+
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 shadow-sm">
       <div className="flex justify-between items-center px-4 sm:px-8 md:px-16 lg:px-32 h-16">
         <Link href="/" className="font-bold text-xl tracking-tight">Koulutettu Hieroja Leo Pessi</Link>
 
         <nav className="hidden md:flex gap-6 items-center">
-          {navItems.map(({ href, label }) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
@@ -58,7 +58,7 @@ export function Navbar() {
 
       {open && (
         <div className="md:hidden px-4 pb-4 space-y-2">
-          {navItems.map(({ href, label }) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}

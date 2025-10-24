@@ -1,26 +1,47 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
+import type { Metadata, Viewport } from "next";
+import { LocalBusinessJsonLd } from "@/utils/jsonLd";
+import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Providers } from "../components/providers";
+import { Geist, Geist_Mono } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-export const metadata = {
-  title: "Hieronta Leo Pessi",
-  description: "Hierontapalvelut Lappeenrannassa - Leo Pessi",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  metadataBase: new URL('https://hierontaleopessi.fi'),
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="fi" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100 ${inter.className}`}>
+    <html lang="fi" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
+          {children}
           <Footer />
+          <LocalBusinessJsonLd />
         </Providers>
       </body>
     </html>

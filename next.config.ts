@@ -8,6 +8,21 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2678400, // 31 days cache
     qualities: [75, 85, 90, 95, 100], 
   },
-}
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.hierontaleopessi.fi',
+          },
+        ],
+        destination: 'https://hierontaleopessi.fi/:path*',
+        permanent: true,
+      },
+    ];
+  },
+};
 
 export default nextConfig;
