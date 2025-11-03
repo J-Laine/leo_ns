@@ -212,7 +212,7 @@
   content: "‹";
   font-size: 3rem;
   line-height: 1;
-  transform: translateY(-4px);
+  transform: translateY(-7px);
 ;
 }
 
@@ -220,7 +220,7 @@
   content: "›";
   font-size: 3rem;
   line-height: 1;
-  transform: translateY(-3px);
+  transform: translateY(-7px);
 }
 
 /* Dot indicators */
