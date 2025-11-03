@@ -15,36 +15,42 @@ const slides = [
     description:
       "Hieronta vähentää tai jopa poistaa erilaisia kipu- ja jumitiloja, lisää lihasten ja nivelten liikkuvuutta ja joustavuuta sekä rauhoittaa ja rentouttaa kehoa.",
     background: "/urheiluhieronta.JPG",
+    expandable: false,
   },
   {
     title: "IASTM-käsittely",
     description:
       "IASTM (Instrument Assisted Soft Tissue Mobilization) on hoitomenetelmä, joka hyödyntää tietynlaisesti muotoiltuja instrumentteja pehmytkudosten, kuten lihasten, jänteiden ja fasciarakenteiden käsittelyssä. Tämä lähestymistapa on suunniteltu parantamaan kudosten liikkuvuutta, vähentämään kipua ja edistämään paranemista erilaisissa tuki- ja liikuntaelinten vaivoissa.",
     background: "/kalvorauta.JPG",
+    expandable: false,
   },
   {
     title: "Purentalihashieronta",
     description:
       "Purentalihashieronta sopii esimerkiksi hampaiden narskuttelusta, huimauksesta, tinnituksesta tai päänsärystä kärsiville. Purentalihashieronnassa käsitellään purentalihaksia sekä suun ulko- että sisäpuolelta. Myös kaulan, niskan ja kallonpohjan lihakset käydään tarkasti läpi.",
     background: "/purentalihashieronta.JPG",
+    expandable: false,
   },
   {
     title: "Dry needling | Akupunktio",
     description:
       "Dry needling on hoitomenetelmä, jossa ohuita neuloja asetetaan suoraan lihaksen triggerpisteisiin eli jännittyneisiin ja kipua aiheuttaviin kohtiin. Tavoitteena on rentouttaa lihasta, vähentää kipua ja parantaa liikehallintaa. Toisin kuin itämaisessa akupunktiossa, dry needling perustuu länsimaiseen lääketieteelliseen ja anatomiseen tietoon. Menetelmä voi auttaa muun muassa lihasjännityksen, päänsäryn, niska- ja selkäkipujen sekä urheiluvammojen hoidossa. Hoidon jälkeen lihas voi tuntua hetkellisesti aralta, mutta useimmat kokevat helpotusta kipu- ja jännitysoireisiin jo ensimmäisen hoitokerran jälkeen. HUOM! Dry needling saatavilla tällä hetkellä vain ylävartalon alueelle. Lisätietoja \"palvelut ja hinnasto\"-sivulta.",
     background: "/closeupneedle.JPG",
+    expandable: true,
   },
   {
     title: "Myofaskiaalinen kuppaus / kuivakuppaus",
     description:
       "Kuppaus lieventää kipua, parantaa liikkuvuutta, vapauttaa triggerpisteitä ja edistää lymfanestekiertoa sekä verenkiertoa.",
     background: "/kuivakuppaus.JPG",
+    expandable: false,
   },
   {
     title: "Kinesioteippaus",
     description:
       "Kinesioteippaus on erilaisten tuki- ja liikuntaelinvaivojen hoitomenetelmä, jossa käytetään joustavaa ja hengittävää teippiä. Käytetään kiputilojen lievitykseen, asennon korjaamiseen sekä liikkeen ohjaamiseen.",
     background: "/urheiluteippaus.JPG",
+    expandable: false,
   },
 ];
 
@@ -144,8 +150,10 @@ export default function ServiceCarousel() {
     }
   }, [emblaApi]);
 
-  const handleTextBoxClick = (index: number) => {
-    setExpandedSlide(expandedSlide === index ? null : index);
+  const handleTextBoxClick = (index: number, expandable: boolean) => {
+    if (expandable) {
+      setExpandedSlide(expandedSlide === index ? null : index);
+    }
   };
 
   return (
@@ -186,23 +194,31 @@ export default function ServiceCarousel() {
                 </div>
                 
                 <div 
-                  className={`${styles["embla__text-overlay"]} ${expandedSlide === index ? styles["embla__text-overlay--expanded"] : ""}`}
-                  onClick={() => handleTextBoxClick(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
+                  className={`${styles["embla__text-overlay"]} ${
+                    slide.expandable && expandedSlide === index 
+                      ? styles["embla__text-overlay--expanded"] 
+                      : ""
+                  } ${slide.expandable ? styles["embla__text-overlay--clickable"] : ""}`}
+                  onClick={() => handleTextBoxClick(index, slide.expandable)}
+                  role={slide.expandable ? "button" : undefined}
+                  tabIndex={slide.expandable ? 0 : undefined}
+                  onKeyDown={slide.expandable ? (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
-                      handleTextBoxClick(index);
+                      handleTextBoxClick(index, slide.expandable);
                     }
-                  }}
+                  } : undefined}
                 >
                   <h2>{slide.title}</h2>
-                  <p className={expandedSlide === index ? styles["embla__text--expanded"] : styles["embla__text--collapsed"]}>
+                  <p className={
+                    slide.expandable && expandedSlide !== index 
+                      ? styles["embla__text--collapsed"] 
+                      : ""
+                  }>
                     {slide.description}
                   </p>
-                  {!expandedSlide || expandedSlide !== index ? (
+                  {slide.expandable && expandedSlide !== index && (
                     <span className={styles["embla__expand-hint"]}>Klikkaa lukeaksesi lisää</span>
-                  ) : null}
+                  )}
                 </div>
               </div>
             ))}

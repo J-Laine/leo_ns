@@ -53,11 +53,14 @@
   border-radius: 20px;
   backdrop-filter: blur(2px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.embla__text-overlay:hover {
+.embla__text-overlay--clickable {
+  cursor: pointer;
+}
+
+.embla__text-overlay--clickable:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
