@@ -36,7 +36,7 @@
   position: absolute;
   max-width: 90%;
   max-height: 75%;
-  height: 100%;
+  height: auto;
   width: 100%;
   top: 50%;
   left: 50%;
@@ -53,6 +53,18 @@
   border-radius: 20px;
   backdrop-filter: blur(2px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.embla__text-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.embla__text-overlay--expanded {
+  max-height: 90%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .embla__text-overlay h2 {
@@ -63,6 +75,28 @@
 .embla__text-overlay p {
   font-size: 1.2rem;
   line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+.embla__text--collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.embla__text--expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.embla__expand-hint {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  font-style: italic;
 }
 
 .embla__slide {

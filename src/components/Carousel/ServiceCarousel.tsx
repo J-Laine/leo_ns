@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useEmblaCarousel from "embla-carousel-react";
 import Image from 'next/image';
 import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
@@ -31,7 +31,7 @@ const slides = [
   {
     title: "Dry needling | Akupunktio",
     description:
-      "Dry needling on hoitomenetelmä, jossa ohuita neuloja asetetaan suoraan lihaksen triggerpisteisiin eli jännittyneisiin ja kipua aiheuttaviin kohtiin. Tavoitteena on rentouttaa lihasta, vähentää kipua ja parantaa liikehallintaa. Toisin kuin itämaisessa akupunktiossa, dry needling perustuu länsimaiseen lääketieteelliseen ja anatomiseen tietoon. Menetelmä voi auttaa muun muassa lihasjännityksen, päänsäryn, niska- ja selkäkipujen sekä urheiluvammojen hoidossa. Hoidon jälkeen lihas voi tuntua hetkellisesti aralta, mutta useimmat kokevat helpotusta kipu- ja jännitysoireisiin jo ensimmäisen hoitokerran jälkeen. HUOM! Dry needling saatavilla tällä hetkellä vain ylävartalon alueelle. Lisätietoja \"palvelut ja hinnasto\"-kohdasta.",
+      "Dry needling on hoitomenetelmä, jossa ohuita neuloja asetetaan suoraan lihaksen triggerpisteisiin eli jännittyneisiin ja kipua aiheuttaviin kohtiin. Tavoitteena on rentouttaa lihasta, vähentää kipua ja parantaa liikehallintaa. Toisin kuin itämaisessa akupunktiossa, dry needling perustuu länsimaiseen lääketieteelliseen ja anatomiseen tietoon. Menetelmä voi auttaa muun muassa lihasjännityksen, päänsäryn, niska- ja selkäkipujen sekä urheiluvammojen hoidossa. Hoidon jälkeen lihas voi tuntua hetkellisesti aralta, mutta useimmat kokevat helpotusta kipu- ja jännitysoireisiin jo ensimmäisen hoitokerran jälkeen. HUOM! Dry needling saatavilla tällä hetkellä vain ylävartalon alueelle. Lisätietoja \"palvelut ja hinnasto\"-sivulta.",
     background: "/closeupneedle.JPG",
   },
   {
@@ -53,6 +53,8 @@ export default function ServiceCarousel() {
     loop: true,
     duration: 40, 
   });
+  
+  const [expandedSlide, setExpandedSlide] = useState<number | null>(null);
   
   // Existing hooks
   const { prevDisabled, nextDisabled, scrollPrev, scrollNext } = usePrevNextButtons(emblaApi);
@@ -129,6 +131,23 @@ export default function ServiceCarousel() {
       .on('slideFocus', tweenParallax);
   }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor]);
 
+  // Reset expanded state when slide changes
+  useEffect(() => {
+    if (emblaApi) {
+      const onSelect = () => {
+        setExpandedSlide(null);
+      };
+      emblaApi.on('select', onSelect);
+      return () => {
+        emblaApi.off('select', onSelect);
+      };
+    }
+  }, [emblaApi]);
+
+  const handleTextBoxClick = (index: number) => {
+    setExpandedSlide(expandedSlide === index ? null : index);
+  };
+
   return (
     <div className={styles.embla}>
       <div className={styles.embla__viewport_container}>
@@ -166,9 +185,24 @@ export default function ServiceCarousel() {
                   </div>
                 </div>
                 
-                <div className={styles["embla__text-overlay"]}>
+                <div 
+                  className={`${styles["embla__text-overlay"]} ${expandedSlide === index ? styles["embla__text-overlay--expanded"] : ""}`}
+                  onClick={() => handleTextBoxClick(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleTextBoxClick(index);
+                    }
+                  }}
+                >
                   <h2>{slide.title}</h2>
-                  <p>{slide.description}</p>
+                  <p className={expandedSlide === index ? styles["embla__text--expanded"] : styles["embla__text--collapsed"]}>
+                    {slide.description}
+                  </p>
+                  {!expandedSlide || expandedSlide !== index ? (
+                    <span className={styles["embla__expand-hint"]}>Klikkaa lukeaksesi lisää</span>
+                  ) : null}
                 </div>
               </div>
             ))}
