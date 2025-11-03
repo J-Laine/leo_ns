@@ -75,7 +75,7 @@ export function ServicesAndPrices({ className = "" }: ServicesPricingProps) {
       </div>
 
       {/* Additional Services Table */}
-      <div className="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 shadow-lg overflow-hidden mb-8">
+      <div className="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 shadow-lg overflow-hidden mb-6">
         <div className="bg-zinc-50 dark:bg-zinc-700 px-4 sm:px-6 py-3 border-b border-zinc-200 dark:border-zinc-600">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Lisäpalvelut</h3>
@@ -102,6 +102,19 @@ export function ServicesAndPrices({ className = "" }: ServicesPricingProps) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Dry Needling Info Box */}
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 sm:p-6 mb-8">
+        <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3">
+          Lisätietoja dry needling-hinnastosta
+        </h3>
+        <p className="text-sm sm:text-base text-blue-800 dark:text-blue-200 leading-relaxed">
+          Kun haluat yhdistää kuivaneulauksen käsittelyysi, varaa aika hierontaan ja kirjoita lisätietokenttään 
+          esim. <span className="font-semibold">&quot;dry needling&quot;</span> tai <span className="font-semibold">&quot;kuivaneulaus&quot;</span>. 
+          Kuivaneulauksesta ei vielä veloiteta lisämaksua, sillä teen neulotusta opiskelijatyönä. 
+          Teen dry needling-hoitoja toistaiseksi <span className="font-semibold">vain ylävartalon alueelle</span>.
+        </p>
       </div>
 
       {/* Booking Button */}

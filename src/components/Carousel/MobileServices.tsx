@@ -22,6 +22,12 @@ const services = [
     image: "/purentalihashieronta.JPG",
   },
   {
+    title: "Dry needling | Akupunktio",
+    description:
+      "Dry needling on hoitomenetelmä, jossa ohuita neuloja asetetaan suoraan lihaksen triggerpisteisiin eli jännittyneisiin ja kipua aiheuttaviin kohtiin. Tavoitteena on rentouttaa lihasta, vähentää kipua ja parantaa liikehallintaa. Toisin kuin itämaisessa akupunktiossa, dry needling perustuu länsimaiseen lääketieteelliseen ja anatomiseen tietoon. Menetelmä voi auttaa muun muassa lihasjännityksen, päänsäryn, niska- ja selkäkipujen sekä urheiluvammojen hoidossa. Hoidon jälkeen lihas voi tuntua hetkellisesti aralta, mutta useimmat kokevat helpotusta kipu- ja jännitysoireisiin jo ensimmäisen hoitokerran jälkeen. HUOM! Dry needling saatavilla tällä hetkellä vain ylävartalon alueelle. Lisätietoja \"palvelut ja hinnasto\"-kohdasta.",
+    image: "/closeupneedle.JPG",
+  },
+  {
     title: "Myofaskiaalinen kuppaus / kuivakuppaus",
     description:
       "Kuppaus lieventää kipua, parantaa liikkuvuutta, vapauttaa triggerpisteitä ja edistää lymfanestekiertoa sekä verenkiertoa.",
