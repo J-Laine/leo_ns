@@ -228,7 +228,6 @@ export function ContactForm({ className = "" }: ContactFormProps) {
             required
             rows={5}
             className="w-full px-4 py-3 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-vertical"
-            placeholder="Kerro tarpeistasi ja toiveistasi hieronnan suhteen..."
             disabled={isSubmitting}
           />
         </div>
